@@ -54,7 +54,7 @@
         </div>
     </header>
     <main>
-        <div class="main-screen">
+        <section class="main-screen">
             <div class="main-bg-wrapper">
                 <picture class="main-bg-elem">
                     <source srcset="media/bg-main-p1.svg" media="(min-width: 1024px)"/>
@@ -177,52 +177,97 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <section class="products-section">
+            <div class="container product-content">
+                <div class="product-list">
+                    <div class="product-elem">
+                        <div class="product-header">
+                            <span class="product-name">Футблока 10 RUB black</span>
+                            <span class="product-price">5 990 ₽</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="./media/products/product-1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="product-elem">
+                        <div class="product-header">
+                            <span class="product-name">ФУТБОЛКА JUST DO IT GREEN</span>
+                            <span class="product-price">5 990 ₽</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="./media/products/product-2.png" alt="">
+                        </div>
+                    </div>
+                    <div class="product-elem">
+                        <div class="product-header">
+                            <span class="product-name">ФУТБОЛКА 10 RUB WHITE</span>
+                            <span class="product-price">5 990 ₽</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="./media/products/product-3.png" alt="">
+                        </div>
+                    </div>
+                    <div class="product-elem">
+                        <div class="product-header">
+                            <span class="product-name">Футблока 10 RUB black</span>
+                            <span class="product-price">5 990 ₽</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="./media/products/product-2.png" alt="">
+                        </div>
+                    </div>
+                    <div class="product-elem">
+                        <div class="product-header">
+                            <span class="product-name">ФУТБОЛКА JUST DO IT GREEN</span>
+                            <span class="product-price">5 990 ₽</span>
+                        </div>
+                        <div class="product-image">
+                            <img src="./media/products/product-1.png" alt="">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="banner-section">
+            <div class="banner-content">
+                <h1 class="invisible-title">Millionnata</h1>
+                <img src="media/millionnata.svg" alt="MILLIONNATA" class="main-title">
+                <div class="banner-description">
+                    <span class="banner-title">Style so rich, life’s a glitch.</span>
+                    <span class="banner-sub-title">(Стиль — как богатство, жизнь — как взлом системы)</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="logo-section">
+            <img src="media/logo.svg" alt="">
+        </section>
+        <section class="social-section">
+            <a href="#" class="social-link">
+                <img src="media/instagramm.svg" alt="">
+                Instagram*
+            </a>
+            <a href="#" class="social-link">
+                <img src="media/tik-tok.svg" alt="">
+                Tik-Tok
+            </a>
+            <a href="#" class="social-link">
+                <img src="media/telegramm.svg" alt="">
+                Telegram
+            </a>
+        </section>
     </main>
-    <footer></footer>
+    <footer>
+        <span>&copy; MILLIONNATA 2025</span>
+        <a href="#" class="agreement-link">Политика обработки персональных данных</a>
+        <span class="legal-alert">*meta platforms inc. признана экстремистской организацией на территории РФ</span>
+    </footer>
 
     <script src="script.js"></script>
     <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-
-  <!-- Initialize Swiper -->
-  <!-- <script>
-    var swiper = new Swiper(".main-slider", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        initialSlide: 1,
-        loop: true,
-        spaceBetween: -150,
-        breakpoints: {
-            // от 320px и выше
-            440: {
-                spaceBetween: -50
-            },
-            744: {
-                spaceBetween: -100
-            },
-            1560: {
-                spaceBetween: -150
-            },
-        },
-        coverflowEffect: {
-            rotate: -50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-        },
-    });
-
-    var subSwiper = new Swiper(".sub-slider", {
-      direction: "vertical",
-    });
-    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
     <script>
         var subSwiper = new Swiper(".sub-slider", {

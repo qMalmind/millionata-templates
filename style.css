@@ -61,6 +61,12 @@ body{
     fill: var(--black-40);
 }
 
+.invisible-title{
+    position: absolute;
+    top: -999px;
+    left: -999px;
+}
+
 /* ===BASE=== */
 
 
@@ -136,6 +142,9 @@ nav ul li a::after{
     
     header{
         height: 61px;
+    }
+
+    .header-content{
         padding: 0 24px;
     }
 
@@ -149,10 +158,14 @@ nav ul li a::after{
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1560px) {
 
     header{
         height: 90px;
+        padding: 0 40px;
+    }
+    
+    .header-content{
         padding: 0 40px;
     }
 
@@ -307,7 +320,7 @@ main{
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1560px) {
 
     main{
         margin-top: 61px;
@@ -339,6 +352,252 @@ main{
 /* ===Первый экран=== */
 
 
+/* ===Список товаров=== */
+.products-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-content{
+    padding: 0 24px;
+    margin-top: 120px;
+}
+
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px 50px;
+}
+
+.product-elem{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    cursor: pointer;
+    justify-self: center;
+}
+
+.product-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name{
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.product-price{
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.product-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 320px) {
+    .product-content{
+        padding: 0 24px;
+    }
+    
+    .product-list{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 744px) {
+    .product-content{
+        padding: 0 24px;
+    }
+    .product-list{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1560px) {
+    .product-content{
+        padding: 0 40px;
+    }
+    .product-list{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===Список товаров=== */
+
+
+/* ===Баннер=== */
+.banner-content{
+    background-image: url('./media/banner-1.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 848px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 160px;
+    padding-bottom: 40px;
+}
+
+.banner-description{
+    width: 684px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.banner-title{
+    color: #fff;
+    font-weight: 600;
+}
+
+.banner-sub-title{
+    font-weight: 100;
+    color: #fff;
+    margin: 0 auto;
+}
+
+@media (min-width: 320px) {
+    .banner-sub-title,
+    .banner-description{
+        width: 100%;
+    }
+    
+    .banner-title{
+        font-size: 32px;
+    }
+    
+    .banner-description{
+        padding: 0 32px;
+    }
+}
+
+@media (min-width: 744px) {
+    .banner-sub-title,
+    .banner-description{
+        width: 100%;
+    }
+    
+    .banner-title{
+        font-size: 36px;
+    }
+
+    .banner-description{
+        padding: 0 32px;
+    }
+}
+
+@media (min-width: 1560px) {
+    .banner-sub-title{
+        width: 456px;
+        font-size: 20px;
+    }
+
+    .banner-title{
+        font-size: 40px;
+    }
+    
+    .banner-description{
+        width: 684px;
+    }
+}
+
+/* ===Баннер=== */
+
+
+/* ===Подвал=== */
+.logo-section{
+    width: 100%;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    padding: 40px;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.social-link{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8px;
+    padding: 15px 39px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #000;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 40px 0;
+}
+
+.agreement-link{
+    color: var(--black);
+}
+
+.legal-alert{
+    font-weight: 300;
+    font-size: 16px;
+}
+
+@media (min-width: 320px) {
+    .social-section{
+        flex-direction: column;
+    }
+
+    .social-link{
+        width: 100%;
+    }
+}
+
+@media (min-width: 744px) {
+    .social-section{
+        flex-direction: column;
+    }
+
+    .social-link{
+        width: auto;
+    }
+}
+
+@media (min-width: 1560px) {
+    .social-section{
+        flex-direction: row;
+    }
+    
+    .social-link{
+        width: auto;
+    }
+}
+/* ===Подвал=== */
+
+
 @media (min-width: 320px) {
     .container{
         width: 100%;
@@ -351,7 +610,7 @@ main{
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1560px) {
     .container{
         width: 1560px;
     }
