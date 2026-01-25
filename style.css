@@ -149,7 +149,7 @@ nav ul li a::after{
     }
 }
 
-@media (min-width: 1560px) {
+@media (min-width: 1024px) {
 
     header{
         height: 90px;
@@ -240,6 +240,11 @@ main{
 }
 
 @media (min-width: 320px) {
+
+    main{
+        margin-top: 61px;
+    }
+
     .main-bg-wrapper{
         justify-content: flex-end;
     }
@@ -273,6 +278,11 @@ main{
 }
 
 @media (min-width: 744px) {
+
+    main{
+        margin-top: 61px;
+    }
+
     .main-bg-wrapper{
         justify-content: space-between;
     }
@@ -297,7 +307,12 @@ main{
     }
 }
 
-@media (min-width: 1560px) {
+@media (min-width: 1024px) {
+
+    main{
+        margin-top: 61px;
+    }
+
     .main-bg-wrapper{
         justify-content: space-between;
     }
@@ -336,7 +351,7 @@ main{
     }
 }
 
-@media (min-width: 1560px) {
+@media (min-width: 1024px) {
     .container{
         width: 1560px;
     }

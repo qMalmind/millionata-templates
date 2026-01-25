@@ -46,7 +46,7 @@
     }
 }
 
-@media (min-width: 1560px) {
+@media (min-width: 1024px) {
 
     .swiper,
     .swiper-slide {
@@ -89,7 +89,7 @@
     }
 }
 
-@media (min-width: 1560px) {
+@media (min-width: 1024px) {
 
     .sub-slider-container .swiper-slide,
     .sub-slider-container .swiper{
