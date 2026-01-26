@@ -125,6 +125,9 @@ const swiperHTML = `
 
 document.querySelectorAll(".js-product-elem").forEach(productElem=>{
     productElem.addEventListener('click', ()=>{
+        if (window.innerWidth < 744) {
+            return;
+        }
         const productModal = new Modal({
             title: 'Галерея в модальном окне',
             width: 'auto',

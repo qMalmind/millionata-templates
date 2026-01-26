@@ -132,7 +132,8 @@ nav ul li a::after{
     }
 
     .delimetr,
-    .flag-cont{
+    .flag-cont,
+    header nav{
         display: none;
     }
 }
@@ -153,7 +154,8 @@ nav ul li a::after{
     }
     
     .delimetr,
-    .flag-cont{
+    .flag-cont,
+    header nav{
         display: none;
     }
 }
@@ -173,7 +175,8 @@ nav ul li a::after{
         display: none;
     }
     .delimetr,
-    .flag-cont{
+    .flag-cont,
+    header nav{
         display: flex;
     }
 }
@@ -579,6 +582,10 @@ footer{
     width: 440px;
     height: 552px;
     border-radius: 24px 24px 0 0;
+}
+
+.bottom-sheet .product-slider{
+    width: 100%;
 }
 
 .product-options{

@@ -1,4 +1,4 @@
-const showModalBtn = document.querySelector(".show-modal");
+const showModalBtns = document.querySelectorAll(".js-show-modal-product");
 const bottomSheet = document.querySelector(".bottom-sheet");
 const sheetOverlay = bottomSheet.querySelector(".sheet-overlay");
 const sheetContent = bottomSheet.querySelector(".content");
@@ -9,12 +9,12 @@ let isDragging = false, startY, startHeight;
 const showBottomSheet = () => {
     bottomSheet.classList.add("show");
     document.body.style.overflowY = "hidden";
-    updateSheetHeight(50);
+    updateSheetHeight(95);
 }
 
 const updateSheetHeight = (height) => {
     sheetContent.style.height = `${height}vh`;
-    bottomSheet.classList.toggle("fullscreen", height === 100);
+    bottomSheet.classList.toggle("fullscreen", height === 95);
 }
 
 const hideBottomSheet = () => {
@@ -40,7 +40,7 @@ const dragStop = () => {
     isDragging = false;
     bottomSheet.classList.remove("dragging");
     const sheetHeight = parseInt(sheetContent.style.height);
-    sheetHeight < 25 ? hideBottomSheet() : sheetHeight > 75 ? updateSheetHeight(100) : updateSheetHeight(50);
+    sheetHeight < 25 ? hideBottomSheet() : sheetHeight > 75 ? updateSheetHeight(95) : updateSheetHeight(50);
 }
 
 dragIcon.addEventListener("mousedown", dragStart);
@@ -52,4 +52,10 @@ document.addEventListener("touchmove", dragging);
 document.addEventListener("touchend", dragStop);
 
 sheetOverlay.addEventListener("click", hideBottomSheet);
-showModalBtn.addEventListener("click", showBottomSheet);
+showModalBtns.forEach( showModalBtn=>{
+    showModalBtn.addEventListener("click", ()=>{
+        if (window.innerWidth < 744) {
+            showBottomSheet();
+        }
+    });
+});

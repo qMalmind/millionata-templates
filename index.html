@@ -150,7 +150,7 @@
         <section class="products-section">
             <div class="container product-content">
                 <div class="product-list">
-                    <div class="product-elem js-product-elem">
+                    <div class="product-elem js-product-elem js-show-modal-product">
                         <div class="product-header">
                             <span class="product-name">Футблока 10 RUB black</span>
                             <span class="product-price">5 990 ₽</span>
@@ -159,7 +159,7 @@
                             <img src="./media/products/product-1.png" alt="">
                         </div>
                     </div>
-                    <div class="product-elem js-product-elem">
+                    <div class="product-elem js-product-elem js-show-modal-product">
                         <div class="product-header">
                             <span class="product-name">ФУТБОЛКА JUST DO IT GREEN</span>
                             <span class="product-price">5 990 ₽</span>
@@ -233,6 +233,70 @@
         <a href="#" class="agreement-link">Политика обработки персональных данных</a>
         <span class="legal-alert">*meta platforms inc. признана экстремистской организацией на территории РФ</span>
     </footer>
+<!-- <button class="show-modal">Launch The Modal</button> -->
+    <div class="bottom-sheet">
+        <div class="sheet-overlay"></div>
+        <div class="content">
+            <div class="header">
+                <div class="drag-icon"><span></span></div>
+            </div>
+            <div class="body">
+                <div class="product-slider">
+                    <div class="swiper product-modal-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./media/products/product-1.png" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./media/products/product-2.png" />
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./media/products/product-3.png" />
+                        </div>
+                    </div>
+                    <!-- <div class="product-slider-button-next"><img src="media/arrow-slider.svg"/></div>
+                    <div class="product-slider-button-prev"><img src="media/arrow-slider.svg"/></div> -->
+                    <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="product-options">
+                    <div class="priduct-modal-name">Футблока 10 RUB</div>
+                    <div class="product-option product-option-size">
+                        <span class="option-title">Размер</span>
+                        <span class="option-items">
+                            <span class="size-item">
+                                <span class="size-name">XS</span>
+                                <span class="size-num">12</span>
+                            </span>
+                            <span class="size-item">
+                                <span class="size-name">S</span>
+                                <span class="size-num">12</span>
+                            </span>
+                            <span class="size-item disabled-size-item">
+                                <span class="size-name">M</span>
+                                <span class="size-num">0</span>
+                            </span>
+                            <span class="size-item">
+                                <span class="size-name">L</span>
+                                <span class="size-num">12</span>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="product-option product-option-color">
+                        <span class="option-title">Цвет</span>
+                        <span class="option-items">
+                            <span class="color-item color-item-active"><span style="background: #fff"></span></span>
+                            <span class="color-item"><span style="background: #000"></span></span>
+                        </span>
+                    </div>
+                    <div class="product-option product-option-controls">
+                        <span class="product-modal-price">5 990 ₽</span>
+                        <button class="add-to-cart">Добавить в корзину +</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script src="mobile-modal.js"></script>
@@ -286,6 +350,20 @@
                 swiper: subSwiper,
             },
 
+        });
+
+        const productModalSwiper = new Swiper(document.querySelector(".product-modal-swiper"), {
+            loop: true,
+            // navigation: {
+            //     nextEl: ".product-slider-button-next",
+            //     prevEl: ".product-slider-button-prev",
+            // },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            // Добавляем эти параметры для корректной работы в скрытых блоках
+            observer: true, 
+            observeParents: true,
         });
     </script>
 </body>

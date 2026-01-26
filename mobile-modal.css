@@ -49,8 +49,6 @@
 .bottom-sheet .content {
     width: 100%;
     position: relative;
-    background: #222;
-    color: #fff;
     max-height: 100vh;
     height: 50vh;
     padding: 25px 30px;
@@ -86,10 +84,10 @@
 }
 
 .header .drag-icon span {
-    height: 4px;
-    width: 40px;
+    height: 5px;
+    width: 181px;
     display: block;
-    background: #C7D0E1;
+    background: #fff;
     border-radius: 50px;
 }
 
@@ -118,4 +116,22 @@
     width: 300px;
     height: 240px;
     border-radius: 12px;
+}
+
+@media (min-width: 320px) {
+    .bottom-sheet{
+        display: flex;
+    }
+}
+
+@media (min-width: 744px) {
+    .bottom-sheet{
+        display: none;
+    }
+}
+
+@media (min-width: 1560px) {
+    .bottom-sheet{
+        display: none;
+    }
 }
