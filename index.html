@@ -6,7 +6,9 @@
     <title>Миллионата</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="hamburger.css">
-    <link rel="stylesheet" href="main-slider.css">
+    <link rel="stylesheet" href="sliders.css">
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="mobile-modal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
@@ -17,7 +19,7 @@
 <body>
     <header>
         <div class="header-content container">
-            <!-- <nav>
+            <nav>
                 <ul>
                     <li>
                         <a href="#">
@@ -25,7 +27,7 @@
                         </a>
                     </li>
                 </ul>
-            </nav> -->
+            </nav>
             <div class="logo-container">
                 <picture>
                     <source srcset="media/logo.svg" media="(min-width: 1024px)"/>
@@ -57,13 +59,13 @@
         <section class="main-screen">
             <div class="main-bg-wrapper">
                 <picture class="main-bg-elem">
-                    <source srcset="media/bg-main-p1.svg" media="(min-width: 1024px)"/>
+                    <source srcset="media/bg-main-p1.png" media="(min-width: 1560px)"/>
                     <source srcset="media/bg-main-p1-tablet.svg" media="(min-width: 744px)"/>
                     <source srcset="media/bg-main-p1-mobile.svg" media="(min-width: 440px)"/>
-                    <img src="media/bg-main-p1.svg" alt="">
+                    <img src="media/bg-main-p1.png" alt="">
                 </picture>
                 <picture class="main-bg-elem">
-                    <source srcset="media/bg-main-p2.svg" media="(min-width: 1024px)"/>
+                    <source srcset="media/bg-main-p2.svg" media="(min-width: 1560px)"/>
                     <source srcset="media/bg-main-p2-tablet.svg" media="(min-width: 744px)"/>
                     <source srcset="media/bg-main-p2" media="(min-width: 440px)" width="0"/>
                     <img src="media/bg-main-p2.svg" alt="">
@@ -77,28 +79,19 @@
                     <div class="swiper main-slider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                                <img src="media/slide-1.jpg" />
                             </div>
                             <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                                <img src="media/slide-2.jpg" />
                             </div>
                             <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                                <img src="media/slide-3.jpg" />
                             </div>
                             <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                                <img src="media/slide-4.jpg" />
                             </div>
                             <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                                <img src="media/slide-5.jpg" />
                             </div>
                         </div>
                     </div>
@@ -150,30 +143,6 @@
                                 Slide description 5
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="slide-name">
-                                Slide name 6
-                            </div>
-                            <div class="slide-description">
-                                Slide description 6
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="slide-name">
-                                Slide name 7
-                            </div>
-                            <div class="slide-description">
-                                Slide description 7
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="slide-name">
-                                Slide name 8
-                            </div>
-                            <div class="slide-description">
-                                Slide description 8
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +150,7 @@
         <section class="products-section">
             <div class="container product-content">
                 <div class="product-list">
-                    <div class="product-elem">
+                    <div class="product-elem js-product-elem">
                         <div class="product-header">
                             <span class="product-name">Футблока 10 RUB black</span>
                             <span class="product-price">5 990 ₽</span>
@@ -190,7 +159,7 @@
                             <img src="./media/products/product-1.png" alt="">
                         </div>
                     </div>
-                    <div class="product-elem">
+                    <div class="product-elem js-product-elem">
                         <div class="product-header">
                             <span class="product-name">ФУТБОЛКА JUST DO IT GREEN</span>
                             <span class="product-price">5 990 ₽</span>
@@ -199,7 +168,7 @@
                             <img src="./media/products/product-2.png" alt="">
                         </div>
                     </div>
-                    <div class="product-elem">
+                    <div class="product-elem js-product-elem">
                         <div class="product-header">
                             <span class="product-name">ФУТБОЛКА 10 RUB WHITE</span>
                             <span class="product-price">5 990 ₽</span>
@@ -208,7 +177,7 @@
                             <img src="./media/products/product-3.png" alt="">
                         </div>
                     </div>
-                    <div class="product-elem">
+                    <div class="product-elem js-product-elem">
                         <div class="product-header">
                             <span class="product-name">Футблока 10 RUB black</span>
                             <span class="product-price">5 990 ₽</span>
@@ -217,7 +186,7 @@
                             <img src="./media/products/product-2.png" alt="">
                         </div>
                     </div>
-                    <div class="product-elem">
+                    <div class="product-elem js-product-elem">
                         <div class="product-header">
                             <span class="product-name">ФУТБОЛКА JUST DO IT GREEN</span>
                             <span class="product-price">5 990 ₽</span>
@@ -266,18 +235,24 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="mobile-modal.js"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
     <script>
         var subSwiper = new Swiper(".sub-slider", {
-            direction: "vertical",
-            initialSlide: 1,
-            loop: true,
-            // Запрещаем только управление пальцем/мышью
-            allowTouchMove: false, 
-            // Убираем simulateTouch и жесткие запреты allowSlideNext/Prev, 
-            // чтобы контроллер мог ими управлять
+            grabCursor: true,
+            effect: "creative",
+            creativeEffect: {
+            prev: {
+                shadow: true,
+                translate: ["-120%", 0, -500],
+            },
+            next: {
+                shadow: true,
+                translate: ["120%", 0, -500],
+            },
+            },
         });
 
         var swiper = new Swiper(".main-slider", {
