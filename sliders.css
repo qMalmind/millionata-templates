@@ -1,6 +1,4 @@
 .main-slider-container .swiper {
-    padding-top: 50px;
-    padding-bottom: 50px;
     overflow: visible !important;
     user-select: none;
 }
@@ -153,6 +151,7 @@
 .product-slider-button-prev,
 .product-slider-button-next {
   backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, .8);
   padding: 13px;
   display: flex;
   align-items: center;
