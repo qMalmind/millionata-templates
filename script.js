@@ -117,7 +117,10 @@ const swiperHTML = `
             </div>
             <div class="product-option product-option-controls">
                 <span class="product-modal-price">5 990 ₽</span>
-                <button class="add-to-cart">Добавить в корзину +</button>
+                <button class="add-to-cart">
+                    Добавить в корзину  
+                    <img src="media/white_plus.svg" alt="">
+                </button>
             </div>
         </div>
     </div>

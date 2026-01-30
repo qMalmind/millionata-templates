@@ -131,7 +131,7 @@
     /* x start 50%, y start 0% -> x end 50%, y end 100% — это линейный градиент сверху вниз */
     mask-image: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, .5) 0%,
         rgba(0, 0, 0, 1) 100%
     );
     -webkit-mask-image: linear-gradient(
@@ -146,6 +146,10 @@
 
 .product-slider .swiper-pagination-bullet-active{
     background: #fff;
+}
+
+.product-slider .swiper-pagination-bullet{
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .product-slider-button-prev,

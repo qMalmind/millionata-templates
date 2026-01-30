@@ -23,7 +23,7 @@
                 <ul>
                     <li>
                         <a href="#">
-                            Об исполнитиле
+                            Об исполнителе
                         </a>
                     </li>
                 </ul>
@@ -291,7 +291,10 @@
                     </div>
                     <div class="product-option product-option-controls">
                         <span class="product-modal-price">5 990 ₽</span>
-                        <button class="add-to-cart">Добавить в корзину +</button>
+                        <button class="add-to-cart">
+                            Добавить в корзину  
+                            <img src="media/white_plus.svg" alt="">
+                        </button>
                     </div>
                 </div>
             </div>
@@ -306,6 +309,7 @@
     <script>
         var subSwiper = new Swiper(".sub-slider", {
             grabCursor: true,
+            allowTouchMove: false,
             effect: "creative",
             creativeEffect: {
             prev: {
