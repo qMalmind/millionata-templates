@@ -64,95 +64,125 @@ class Modal {
     }
 }
 
-// 1. Подготовим HTML разметку для слайдера
-const swiperHTML = `
-    <div class="product-modal">
-        <div class="product-slider">
-            <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="./media/products/product-1.png" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="./media/products/product-2.png" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="./media/products/product-3.png" />
-                </div>
-            </div>
-            <div class="product-slider-button-next"><img src="media/arrow-slider.svg"/></div>
-            <div class="product-slider-button-prev"><img src="media/arrow-slider.svg"/></div>
-            <div class="swiper-pagination"></div>
-            </div>
-        </div>
-        <div class="product-options">
-            <div class="priduct-modal-name">Футблока 10 RUB</div>
-            <div class="product-option product-option-size">
-                <span class="option-title">Размер</span>
-                <span class="option-items">
-                    <span class="size-item">
-                        <span class="size-name">XS</span>
-                        <span class="size-num">12</span>
-                    </span>
-                    <span class="size-item">
-                        <span class="size-name">S</span>
-                        <span class="size-num">12</span>
-                    </span>
-                    <span class="size-item disabled-size-item">
-                        <span class="size-name">M</span>
-                        <span class="size-num">0</span>
-                    </span>
-                    <span class="size-item">
-                        <span class="size-name">L</span>
-                        <span class="size-num">12</span>
-                    </span>
-                </span>
-            </div>
-            <div class="product-option product-option-color">
-                <span class="option-title">Цвет</span>
-                <span class="option-items">
-                    <span class="color-item color-item-active"><span style="background: #fff"></span></span>
-                    <span class="color-item"><span style="background: #000"></span></span>
-                </span>
-            </div>
-            <div class="product-option product-option-controls">
-                <span class="product-modal-price">5 990 ₽</span>
-                <button class="add-to-cart">
-                    Добавить в корзину  
-                    <img src="media/white_plus.svg" alt="">
-                </button>
-            </div>
-        </div>
-    </div>
-`;
+function initProductSwiper(container) {
+    
+    let swiper = new Swiper(container.querySelector(".product-swiper"), {
+        loop: true,
+        navigation: {
+            nextEl: container.querySelector(".product-slider-button-next"),
+            prevEl: container.querySelector(".product-slider-button-prev"),
+        },
+        pagination: {
+            el: container.querySelector(".swiper-pagination"),
+            clickable: true
+        },
+        observer: true,
+        observeParents: true,
+    });
+    console.log(container.querySelector(".product-swiper"));
+    return swiper;
+}
 
-document.querySelectorAll(".js-product-elem").forEach(productElem=>{
-    productElem.addEventListener('click', ()=>{
+// Получение контента из шаблона
+function getProductContent() {
+    const template = document.getElementById('product-template');
+    return template.content.cloneNode(true);
+}
+
+// --- ЛОГИКА BOTTOM SHEET ---
+const bottomSheet = document.querySelector(".bottom-sheet");
+const sheetContent = bottomSheet.querySelector(".content");
+const sheetBody = bottomSheet.querySelector(".body");
+const dragIcon = bottomSheet.querySelector(".drag-icon");
+
+let isDragging = false, startY, startHeight;
+
+const showBottomSheet = () => {
+    // Очищаем и вставляем свежий контент
+    sheetBody.innerHTML = '';
+    const content = getProductContent();
+    sheetBody.appendChild(content);
+    
+    bottomSheet.classList.add("show");
+    document.body.style.overflow = "hidden";
+    updateSheetHeight(90); // Открываем на половину
+
+    // Инициализируем свайпер внутри
+    initProductSwiper(sheetBody);
+}
+
+const hideBottomSheet = () => {
+    bottomSheet.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+const updateSheetHeight = (height) => {
+    sheetContent.style.height = `${height}vh`;
+    bottomSheet.classList.toggle("fullscreen", height > 90);
+}
+
+// Исправление: Тянем ТОЛЬКО за dragIcon, чтобы не конфликтовать со свайпером
+const dragStart = (e) => {
+    isDragging = true;
+    startY = e.pageY || e.touches?.[0].pageY;
+    startHeight = parseInt(sheetContent.style.height);
+    bottomSheet.classList.add("dragging");
+}
+
+const dragging = (e) => {
+    if (!isDragging) return;
+    const currentY = e.pageY || e.touches?.[0].pageY;
+    const delta = startY - currentY;
+    const newHeight = startHeight + (delta / window.innerHeight) * 100;
+    if (newHeight > 20 && newHeight < 96) {
+        updateSheetHeight(newHeight);
+    }
+}
+
+const dragStop = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    bottomSheet.classList.remove("dragging");
+    const sheetHeight = parseInt(sheetContent.style.height);
+    
+    if (sheetHeight < 35) {
+        hideBottomSheet();
+    } else if (sheetHeight > 75) {
+        updateSheetHeight(90);
+    } else {
+        updateSheetHeight(50);
+    }
+}
+
+// Слушатели для Bottom Sheet (только за иконку)
+dragIcon.addEventListener("mousedown", dragStart);
+dragIcon.addEventListener("touchstart", dragStart);
+document.addEventListener("mousemove", dragging);
+document.addEventListener("touchmove", dragging);
+document.addEventListener("mouseup", dragStop);
+document.addEventListener("touchend", dragStop);
+bottomSheet.querySelector(".sheet-overlay").addEventListener("click", hideBottomSheet);
+
+// --- ГЛАВНЫЙ ОБРАБОТЧИК КЛИКА НА ТОВАР ---
+document.querySelectorAll(".js-product-elem, .js-show-modal-product").forEach(btn => {
+    btn.addEventListener('click', () => {
         if (window.innerWidth < 744) {
-            return;
+            showBottomSheet();
+        } else {
+            const modal = new Modal({
+                width: '900px',
+                content: '', // Сначала пусто
+                onOpen(modalInstance) {
+                    // Вставляем контент в модалку
+                    const content = getProductContent();
+                    const body = modalInstance.$el.querySelector('.v-modal-body');
+                    body.innerHTML = '';
+                    body.appendChild(content);
+                    // Инициализируем свайпер
+                    initProductSwiper(body);
+                }
+            });
+            modal.open();
         }
-        const productModal = new Modal({
-            title: 'Галерея в модальном окне',
-            width: 'auto',
-            content: swiperHTML,
-            onOpen(modal) {
-                // Инициализируем Swiper только когда модалка открыта
-                // Используем поиск внутри элемента модалки modal.$el
-                const swiper = new Swiper(modal.$el.querySelector(".mySwiper"), {
-                    loop: true,
-                    navigation: {
-                        nextEl: ".product-slider-button-next",
-                        prevEl: ".product-slider-button-prev",
-                    },
-                    pagination: {
-                        el: ".swiper-pagination",
-                    },
-                    // Добавляем эти параметры для корректной работы в скрытых блоках
-                    observer: true, 
-                    observeParents: true,
-                });
-            }
-        });
-        productModal.open();
     });
 });
