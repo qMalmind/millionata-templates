@@ -17,6 +17,93 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 </head>
 <body>
+    <div class="hamburger-menu hamburger-menu-active js-hamburger-menu">
+        <nav class="hamburger-nav">
+            <ul>
+                <li class="hamburger-nav-item">
+                    <div class="hamburger-nav-item-wrapper">
+                        <div class="hamburger-nav-item-container">
+                            <div class="hamburger-nav-item-content">
+                                <a href="#">Об исполнителе</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="hamburger-nav-item">
+                    <div class="hamburger-nav-item-wrapper">
+                        <div class="hamburger-nav-item-container">
+                            <span class="hamburger-nav-item-title">Соцсети MILLIONNATA</span>
+                            <div class="hamburger-nav-item-content">
+                                <a href="#">Тикток</a>
+                                <a href="#">Инстаграм</a>
+                            </div>
+                        </div>
+                        <div class="hamburger-nav-item-container">
+                            <span class="hamburger-nav-item-title">Событие</span>
+                            <div class="hamburger-nav-item-content">
+                                <a href="#">На страницу события</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="hamburger-nav-item">
+                    <div class="hamburger-nav-item-wrapper">
+                        <div class="hamburger-nav-item-container">
+                            <span class="hamburger-nav-item-title">Телефон менеджера</span>
+                            <div class="hamburger-nav-item-content">
+                                <a href="#">+7 (900) 123-45-67</a>
+                            </div>
+                        </div>
+                        <div class="hamburger-nav-item-container">
+                            <span class="hamburger-nav-item-title">Мессенджеры менеджера</span>
+                            <div class="hamburger-nav-item-content">
+                                <a href="#">Телеграм</a>
+                                <a href="#">WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="hamburger-nav-item">
+                    <div class="hamburger-nav-item-wrapper">
+                        <div class="hamburger-nav-item-container">
+                            <span class="hamburger-nav-item-title">Заказать обратный звонок</span>
+                            <div class="hamburger-nav-item-content">
+                                <a href="#">Обратный звонок</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="hamburger-nav-item">
+                    <div class="hamburger-nav-item-wrapper">
+                        <div class="hamburger-nav-item-container">
+                            <div class="hamburger-nav-item-content">
+                                <div class="flag-wrapper">
+                                    <a href="#" class="flag-cont js-flag-cont">
+                                        <span class="black-400">ru</span> 
+                                        <img src="media/flag-ru.svg" alt="ru">
+                                    </a>
+
+                                    <!-- Сам тултип -->
+                                    <div class="flag-tooltip js-flag-tooltip">
+                                        <ul class="flag-list">
+                                            <li><a href="/en"><img src="media/flag-ru.svg" alt=""> <span>English</span></a></li>
+                                            <li><a href="/de"><img src="media/flag-ru.svg" alt=""> <span>Deutsch</span></a></li>
+                                            <li><a href="/fr"><img src="media/flag-ru.svg" alt=""> <span>Français</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger-bg">
+            <img src="media/logo-hamburger.png" alt="">
+        </div>
+    </div>
     <header>
         <div class="header-content container">
             <nav>
@@ -37,13 +124,27 @@
                 </picture>
             </div>
             <div class="header-controls">
-                <img src="media/trash.svg" alt="" width="58" height="58">
+                <div class="js-cart cart-empty cart">
+                    <span class="num-products-in-cart js-num-products-in-cart"></span>
+                    <img src="media/trash.svg" alt="" width="58" height="58">
+                </div>
                 <span class="black-200 delimetr">
                     <img src="media/delimetr.svg" alt="">
                 </span>
-                <div class="flag-cont">
-                    <img src="media/flag-ru.svg" alt="">
-                    <span class="black-400">ru</span>
+                <div class="flag-wrapper">
+                    <a href="#" class="flag-cont js-flag-cont">
+                        <span class="black-400">ru</span> 
+                        <img src="media/flag-ru.svg" alt="ru">
+                    </a>
+
+                    <!-- Сам тултип -->
+                    <div class="flag-tooltip js-flag-tooltip">
+                        <ul class="flag-list">
+                            <li><a href="/en"><img src="media/flag-ru.svg" alt=""> <span>English</span></a></li>
+                            <li><a href="/de"><img src="media/flag-ru.svg" alt=""> <span>Deutsch</span></a></li>
+                            <li><a href="/fr"><img src="media/flag-ru.svg" alt=""> <span>Français</span></a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="hamburger-container">
                     <div class="js-hamburger hamburger" id="hamburger-1">
@@ -246,7 +347,6 @@
         </div>
     </div>
 
-
     <template id="product-template">
         <div class="product-modal">
             <div class="product-slider">
@@ -272,34 +372,62 @@
                 <div class="product-option product-option-size">
                     <span class="option-title">Размер</span>
                     <span class="option-items">
-                        <span class="size-item">
-                            <span class="size-name">XS</span>
-                            <span class="size-num">12</span>
-                        </span>
-                        <span class="size-item">
-                            <span class="size-name">S</span>
-                            <span class="size-num">12</span>
-                        </span>
-                        <span class="size-item disabled-size-item">
-                            <span class="size-name">M</span>
-                            <span class="size-num">0</span>
-                        </span>
-                        <span class="size-item">
-                            <span class="size-name">L</span>
-                            <span class="size-num">12</span>
-                        </span>
+                        <label class="size-item-container" for="size-xs">
+                            <input type="radio" name="size" id="size-xs" checked>
+                            <div class="size-item">
+                                <span class="size-name">XS</span>
+                                <span class="size-num">12</span>
+                            </div>
+                        </label>
+                        <label class="size-item-container" for="size-s">
+                            <input type="radio" name="size" id="size-s">
+                            <div class="size-item">
+                                <span class="size-name">S</span>
+                                <span class="size-num">12</span>
+                            </div>
+                        </label>
+                        <label class="size-item-container" for="size-m">
+                            <input type="radio" name="size" id="size-m" disabled>
+                            <div class="size-item">
+                                <span class="size-name">M</span>
+                                <span class="size-num">0</span>
+                            </div>
+                        </label>
+                        <label class="size-item-container" for="size-l">
+                            <input type="radio" name="size" id="size-l" value="L">
+                            <div class="size-item">
+                                <span class="size-name">L</span>
+                                <span class="size-num">12</span>
+                            </div>
+                        </label>
                     </span>
                 </div>
                 <div class="product-option product-option-color">
                     <span class="option-title">Цвет</span>
                     <span class="option-items">
-                        <span class="color-item color-item-active"><span style="background: #fff"></span></span>
-                        <span class="color-item"><span style="background: #000"></span></span>
+                        <label class="color-item-container color-item-active" for="color-white">
+                            <input type="radio" name="color" id="color-white" value="white" checked>
+                            <span class="color-item">
+                                <span style="background: #fff"></span>
+                            </span>
+                        </label>
+                        <label class="color-item-container" for="color-black">
+                            <input type="radio" name="color" id="color-black" value="black">
+                            <span class="color-item">
+                                <span style="background: #000"></span>
+                            </span>
+                        </label>
+                        <label class="color-item-container" for="color-green">
+                            <input type="radio" name="color" id="color-green" value="green" disabled>
+                            <span class="color-item">
+                                <span style="background: #78866b"></span>
+                            </span>
+                        </label>
                     </span>
                 </div>
                 <div class="product-option product-option-controls">
                     <span class="product-modal-price">5 990 ₽</span>
-                    <button class="add-to-cart">
+                    <button class="add-to-cart js-add-to-cart">
                         Добавить в корзину  
                         <img src="media/white_plus.svg" alt="">
                     </button>
@@ -314,7 +442,7 @@
 
     <script>
         var subSwiper = new Swiper(".sub-slider", {
-            grabCursor: true,
+            grabCursor: false,
             allowTouchMove: false,
             effect: "creative",
             creativeEffect: {

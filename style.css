@@ -93,11 +93,11 @@ header{
     align-items: center;
 }
 
-nav ul li{
+header nav ul li{
     list-style-type: none;
 }
 
-nav ul li a{
+header  nav ul li a{
     text-decoration: none;
     color: #000;
 
@@ -105,7 +105,7 @@ nav ul li a{
     flex-direction: column;
 }
 
-nav ul li a::after{
+header nav ul li a::after{
     content: '';
     width: 100%;
     height: 2px;
@@ -203,7 +203,7 @@ main{
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 115vh;
 
     display: flex;
 
@@ -212,7 +212,7 @@ main{
 }
 
 .main-bg-elem{
-    height: 100vh;
+    /* height: 100vh; */
     display: block;
 }
 
@@ -278,6 +278,7 @@ main{
 
     .main-bg-wrapper{
         justify-content: flex-end;
+        height: 100vh;
     }
 
     .main-slider-container{
@@ -321,6 +322,7 @@ main{
 
     .main-bg-wrapper{
         justify-content: space-between;
+        height: 100vh;
     }
 
     .main-slider-container{
@@ -356,6 +358,7 @@ main{
 
     .main-bg-wrapper{
         justify-content: space-between;
+        height: 115vh;
     }
     
     .main-slider-container{
@@ -380,6 +383,13 @@ main{
     .sub-slider-container .slide-name{
         font-size: 32px;
     }
+}
+
+@media (min-width: 1921px) {
+    .main-bg-wrapper{
+        height: 100vh;
+    }
+
 }
 /* ===Первый экран=== */
 
@@ -650,9 +660,22 @@ footer{
     gap: 12px 8px;
 }
 
-.size-item{
+.size-item-container{
     width: 56px;
     height: 56px;
+}
+
+.size-item-container input[type="radio"],
+.color-item-container input[type="radio"]{
+    position: absolute;
+    top: -999px;
+    left: -999px;
+}
+
+.size-item{
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -663,11 +686,16 @@ footer{
     cursor: pointer;
 }
 
-.disabled-size-item{
+.size-item-container input[type="radio"]:disabled ~ .size-item{
     cursor: default;
     background-color: rgba(20, 20, 20, 0.04);
     border-color: rgba(20, 20, 20, 0.04);
     color: rgba(20, 20, 20, 0.04);
+    cursor: not-allowed;
+}
+
+.size-item-container input[type="radio"]:checked ~ .size-item{
+    border-width: 3px;
 }
 
 .size-name{
@@ -678,14 +706,20 @@ footer{
     color: rgba(20, 20, 20, 0.4);
 }
 
-.color-item{
+.color-item-container{
     width: 48px;
     height: 48px;
+}
+
+.color-item{
+    position: relative;
+    width: 100%;
+    height: 100%;
     padding: 4px;
     border-radius: 50px;
-    border: 1px solid rgba(0, 0, 0, 0);
     display: block;
     cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0);
 }
 
 .color-item span{
@@ -697,8 +731,23 @@ footer{
     border: 1px solid rgba(20, 20, 20, 0.2);
 }
 
-.color-item-active{
+.color-item-container input[type="radio"]:checked ~ .color-item{
     border-color: #000;
+}
+
+.color-item-container input[type="radio"]:disabled ~ .color-item{
+    border-color: #842029;
+    border-width: 2px;
+    cursor: not-allowed;
+}
+
+.color-item-container input[type="radio"]:disabled ~ .color-item::after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    transform: rotate(45deg) translate(-15px, -10px);
+    background-color: #842029;
 }
 
 .product-option-controls{
@@ -729,6 +778,11 @@ footer{
     column-gap: 10px;
 }
 
+
+.add-to-cart img{
+    transition: all .2 ease-out;
+}
+
 .add-to-cart:hover{
     background-color: rgba(249, 24, 24, 1);
     transition: all .2s ease-out;
@@ -737,6 +791,34 @@ footer{
 .add-to-cart:active{
     background-color: rgba(205, 36, 36, 1);
     transition: all .2s ease-out;
+}
+
+.add-to-cart:active img{
+    transform: scale(1.1);
+}
+
+.cart img{
+    display: none;
+}
+
+.cart .num-products-in-cart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #C72424;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cart-empty .num-products-in-cart{
+    display: none;
+}
+
+.cart-empty img{
+    display: block;
 }
 
 .priduct-modal-name {
@@ -781,6 +863,177 @@ footer{
     }
 }
 /* ===Подвал=== */
+
+
+/* ===Бургер меню=== */
+.hamburger-menu{
+    position: fixed;
+    top: 61px;
+    right: 0;
+    width: 100%;
+    height: calc(100vh-61px);
+    display: flex;
+    transform: translate(-100%, 0);
+
+    background-color: #fff;
+
+    transition: all .4s ease-out;
+    z-index: 11;
+}
+
+.hamburger-menu-is-active{
+    transform: translate(0, 0);
+}
+
+.hamburger-bg {
+    height: 100vh;
+    transform: translate(0, 600px);
+    pointer-events: none;
+    transition: all .4s ease-out;
+}
+
+.hamburger-menu-is-active .hamburger-bg{
+    transform: translate(0, -60px);
+}
+
+.hamburger-nav {
+    flex: 1;
+    padding: 24px;
+}
+
+.hamburger-menu a{
+    text-decoration: none;
+    color: #000;
+}
+
+.hamburger-nav-item{
+    list-style-type: none;
+    padding: 0;
+}
+
+.hamburger-nav-item-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.hamburger-nav-item-wrapper{
+    padding: 24px 0 24px 0;
+}
+
+.hamburger-nav-item::after {
+    content: '';
+    height: 1px;
+    width: calc(100% - (146px - 28px));
+    position: absolute;
+    background-color: #1414141A;
+    display: block;
+}
+
+.hamburger-nav-item:last-child .hamburger-nav-item-wrapper{
+    padding: 24px 0 0 0;
+}
+
+.hamburger-nav-item:last-child::after{
+    display: none;
+}
+
+.hamburger-nav-item:first-child .hamburger-nav-item-wrapper{
+    padding: 0 0 24px 0;
+}
+
+.hamburger-nav-item-title{
+    color: #14141433;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+}
+
+.hamburger-nav-item-content{
+    display: flex;
+    column-gap: 16px;
+}
+
+.hamburger-nav-item-content a{
+    font-size: 16px;
+}
+
+.hamburger-lang-row{
+    display: flex;
+    column-gap: ;
+}
+
+.hamburger-menu .flag-cont{
+    display: flex;
+}
+
+@media (min-width: 320px) {
+    .hamburger-menu{
+        display: flex;
+    }
+}
+@media (min-width: 744px) {
+    .hamburger-menu{
+        display: flex;
+        padding: 0 24px;
+    }
+}
+
+@media (min-width: 1560px) {
+    .hamburger-menu{
+        display: none;
+    }
+}
+/* ===Бургер меню=== */
+
+
+.flag-wrapper {
+    position: relative; /* Важно для привязки тултипа */
+    display: inline-block;
+}
+
+.flag-tooltip {
+    display: none; /* Скрыт по умолчанию */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    z-index: 100;
+    min-width: 120px;
+    padding: 8px 0;
+}
+
+/* Класс для отображения */
+.flag-tooltip.is-active {
+    display: block;
+}
+
+.flag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.flag-list li a {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.flag-list li a:hover {
+    background: #f5f5f5;
+}
+
+.flag-list img {
+    width: 20px;
+    margin-right: 8px;
+}
 
 
 @media (min-width: 320px) {

@@ -1,5 +1,9 @@
 let hamburger = document.querySelector('.js-hamburger');
-hamburger.addEventListener('click', ()=> hamburger.classList.toggle('hamburger-is-active'));
+let hamburgerMenu = document.querySelector('.js-hamburger-menu');
+hamburger.addEventListener('click', ()=>{
+    hamburger.classList.toggle('hamburger-is-active');
+    hamburgerMenu.classList.toggle('hamburger-menu-is-active');
+});
 
 class Modal {
     constructor(options = {}) {
@@ -79,14 +83,23 @@ function initProductSwiper(container) {
         observer: true,
         observeParents: true,
     });
-    console.log(container.querySelector(".product-swiper"));
+    
     return swiper;
 }
 
 // Получение контента из шаблона
 function getProductContent() {
     const template = document.getElementById('product-template');
-    return template.content.cloneNode(true);
+    let templateContent = template.content.cloneNode(true);
+    templateContent.querySelector('.js-add-to-cart').addEventListener('click', ()=>{
+        if (typeof window.cart.totalNumProduct === 'number') {
+            window.cart.totalNumProduct++;
+        } else {
+            window.cart.totalNumProduct = 1;
+        }
+    });
+
+    return templateContent;
 }
 
 // --- ЛОГИКА BOTTOM SHEET ---
@@ -186,3 +199,63 @@ document.querySelectorAll(".js-product-elem, .js-show-modal-product").forEach(bt
         }
     });
 });
+
+
+// tooltip
+document.addEventListener('DOMContentLoaded', () => {
+    const flagBtns = document.querySelectorAll('.js-flag-cont');
+    var tooltips = document.querySelector('.js-flag-tooltip');
+
+    flagBtns.forEach(flagBtn => {
+
+        let tooltip = flagBtn.parentElement.querySelector('.js-flag-tooltip');
+
+        // 1. Клик по кнопке (переключатель)
+        flagBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // tooltips.forEach(tooltip => tooltip.classList.remove('is-active'));
+            tooltip.classList.toggle('is-active');
+        });
+
+        // 2. Закрытие при клике в любое другое место документа
+        document.addEventListener('click', (e) => {
+            // Если клик был НЕ по кнопке и НЕ внутри самого тултипа
+            if (!flagBtn.contains(e.target) && !tooltip.contains(e.target)) {
+                tooltip.classList.remove('is-active');
+            }
+        });
+    });
+
+    // 3. Закрытие по нажатию клавиши Esc (хороший тон для UX)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            tooltips.forEach(tooltip => tooltip.classList.remove('is-active'));
+        }
+    });
+});
+
+let cart = {
+    totalNumProduct: 0,
+    products: {},
+}
+
+cart = new Proxy(cart, {
+    get(target, prop) {
+        return target[prop];
+    },
+    set(target, prop, val){
+        console.log(target, prop, val);
+        if(prop == 'totalNumProduct' && val > 0){
+            let cartElem = document.querySelector('.js-cart');
+            cartElem.classList.remove('cart-empty');
+            cartElem.querySelector('.js-num-products-in-cart').innerHTML = val;
+            target.totalNumProduct = val;
+        }else if(prop == 'totalNumProduct' && val <= 0){
+            cartElem.classList.add('cart-empty');
+            cartElem.querySelector('.js-num-products-in-cart').innerHTML = 0;
+            target.totalNumProduct = 0;
+        }
+    }
+});
+
+window.cart = cart;
