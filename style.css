@@ -63,8 +63,10 @@ body{
 
 .invisible-title{
     position: absolute;
-    top: -999px;
-    left: -999px;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: -9999;
 }
 
 /* ===BASE=== */
@@ -668,8 +670,10 @@ footer{
 .size-item-container input[type="radio"],
 .color-item-container input[type="radio"]{
     position: absolute;
-    top: -999px;
-    left: -999px;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: -9999;
 }
 
 .size-item{
