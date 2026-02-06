@@ -102,6 +102,20 @@ function getProductContent() {
     return templateContent;
 }
 
+function getCartContent() {
+    const template = document.getElementById('cart-template');
+    let templateContent = template.content.cloneNode(true);
+    // templateContent.querySelector('.js-add-to-cart').addEventListener('click', ()=>{
+    //     if (typeof window.cart.totalNumProduct === 'number') {
+    //         window.cart.totalNumProduct++;
+    //     } else {
+    //         window.cart.totalNumProduct = 1;
+    //     }
+    // });
+
+    return templateContent;
+}
+
 // --- ЛОГИКА BOTTOM SHEET ---
 const bottomSheet = document.querySelector(".bottom-sheet");
 const sheetContent = bottomSheet.querySelector(".content");
@@ -114,6 +128,20 @@ const showBottomSheet = () => {
     // Очищаем и вставляем свежий контент
     sheetBody.innerHTML = '';
     const content = getProductContent();
+    sheetBody.appendChild(content);
+    
+    bottomSheet.classList.add("show");
+    document.body.style.overflow = "hidden";
+    updateSheetHeight(90); // Открываем на половину
+
+    // Инициализируем свайпер внутри
+    initProductSwiper(sheetBody);
+}
+
+const showBottomSheetCart = () => {
+    // Очищаем и вставляем свежий контент
+    sheetBody.innerHTML = '';
+    const content = getCartContent();
     sheetBody.appendChild(content);
     
     bottomSheet.classList.add("show");
@@ -259,3 +287,26 @@ cart = new Proxy(cart, {
 });
 
 window.cart = cart;
+
+const cartOpenBtn = document.querySelector('.js-opencart');
+
+cartOpenBtn.addEventListener('click', ()=>{
+    if (window.innerWidth < 744) {
+            showBottomSheetCart();
+        } else {
+            const modal = new Modal({
+                width: '900px',
+                content: '', // Сначала пусто
+                onOpen(modalInstance) {
+                    // Вставляем контент в модалку
+                    const content = getCartContent();
+                    const body = modalInstance.$el.querySelector('.v-modal-body');
+                    body.innerHTML = '';
+                    body.appendChild(content);
+                    // Инициализируем свайпер
+                    initProductSwiper(body);
+                }
+            });
+            modal.open();
+        }
+});

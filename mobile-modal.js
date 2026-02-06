@@ -1,27 +1,36 @@
-const showModalBtns = document.querySelectorAll(".js-show-modal-product");
+// --- ЛОГИКА BOTTOM SHEET ---
 const bottomSheet = document.querySelector(".bottom-sheet");
-const sheetOverlay = bottomSheet.querySelector(".sheet-overlay");
 const sheetContent = bottomSheet.querySelector(".content");
+const sheetBody = bottomSheet.querySelector(".body");
 const dragIcon = bottomSheet.querySelector(".drag-icon");
 
 let isDragging = false, startY, startHeight;
 
 const showBottomSheet = () => {
+    // Очищаем и вставляем свежий контент
+    sheetBody.innerHTML = '';
+    const content = getProductContent();
+    sheetBody.appendChild(content);
+    
     bottomSheet.classList.add("show");
-    document.body.style.overflowY = "hidden";
-    updateSheetHeight(95);
-}
+    document.body.style.overflow = "hidden";
+    updateSheetHeight(90); // Открываем на половину
 
-const updateSheetHeight = (height) => {
-    sheetContent.style.height = `${height}vh`;
-    bottomSheet.classList.toggle("fullscreen", height === 95);
+    // Инициализируем свайпер внутри
+    initProductSwiper(sheetBody);
 }
 
 const hideBottomSheet = () => {
     bottomSheet.classList.remove("show");
-    document.body.style.overflowY = "auto";
+    document.body.style.overflow = "";
 }
 
+const updateSheetHeight = (height) => {
+    sheetContent.style.height = `${height}vh`;
+    bottomSheet.classList.toggle("fullscreen", height > 90);
+}
+
+// Исправление: Тянем ТОЛЬКО за dragIcon, чтобы не конфликтовать со свайпером
 const dragStart = (e) => {
     isDragging = true;
     startY = e.pageY || e.touches?.[0].pageY;
@@ -30,32 +39,35 @@ const dragStart = (e) => {
 }
 
 const dragging = (e) => {
-    if(!isDragging) return;
-    const delta = startY - (e.pageY || e.touches?.[0].pageY);
-    const newHeight = startHeight + delta / window.innerHeight * 100;
-    updateSheetHeight(newHeight);
+    if (!isDragging) return;
+    const currentY = e.pageY || e.touches?.[0].pageY;
+    const delta = startY - currentY;
+    const newHeight = startHeight + (delta / window.innerHeight) * 100;
+    if (newHeight > 20 && newHeight < 96) {
+        updateSheetHeight(newHeight);
+    }
 }
 
 const dragStop = () => {
+    if (!isDragging) return;
     isDragging = false;
     bottomSheet.classList.remove("dragging");
     const sheetHeight = parseInt(sheetContent.style.height);
-    sheetHeight < 25 ? hideBottomSheet() : sheetHeight > 75 ? updateSheetHeight(95) : updateSheetHeight(50);
+    
+    if (sheetHeight < 35) {
+        hideBottomSheet();
+    } else if (sheetHeight > 75) {
+        updateSheetHeight(90);
+    } else {
+        updateSheetHeight(50);
+    }
 }
 
+// Слушатели для Bottom Sheet (только за иконку)
 dragIcon.addEventListener("mousedown", dragStart);
-document.addEventListener("mousemove", dragging);
-document.addEventListener("mouseup", dragStop);
-
 dragIcon.addEventListener("touchstart", dragStart);
+document.addEventListener("mousemove", dragging);
 document.addEventListener("touchmove", dragging);
+document.addEventListener("mouseup", dragStop);
 document.addEventListener("touchend", dragStop);
-
-sheetOverlay.addEventListener("click", hideBottomSheet);
-showModalBtns.forEach( showModalBtn=>{
-    showModalBtn.addEventListener("click", ()=>{
-        if (window.innerWidth < 744) {
-            showBottomSheet();
-        }
-    });
-});
+bottomSheet.querySelector(".sheet-overlay").addEventListener("click", hideBottomSheet);

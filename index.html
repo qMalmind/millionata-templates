@@ -88,9 +88,7 @@
                                     <!-- Сам тултип -->
                                     <div class="flag-tooltip js-flag-tooltip">
                                         <ul class="flag-list">
-                                            <li><a href="/en"><img src="media/flag-ru.svg" alt=""> <span>English</span></a></li>
-                                            <li><a href="/de"><img src="media/flag-ru.svg" alt=""> <span>Deutsch</span></a></li>
-                                            <li><a href="/fr"><img src="media/flag-ru.svg" alt=""> <span>Français</span></a></li>
+                                            <li><a href="/en"><img src="media/flag-en.svg" alt=""> <span>English</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -125,7 +123,7 @@
             </div>
             <div class="header-controls">
                 <div class="js-cart cart-empty cart">
-                    <span class="num-products-in-cart js-num-products-in-cart"></span>
+                    <span class="num-products-in-cart js-num-products-in-cart js-opencart"></span>
                     <img src="media/trash.svg" alt="" width="58" height="58">
                 </div>
                 <span class="black-200 delimetr">
@@ -140,9 +138,7 @@
                     <!-- Сам тултип -->
                     <div class="flag-tooltip js-flag-tooltip">
                         <ul class="flag-list">
-                            <li><a href="/en"><img src="media/flag-ru.svg" alt=""> <span>English</span></a></li>
-                            <li><a href="/de"><img src="media/flag-ru.svg" alt=""> <span>Deutsch</span></a></li>
-                            <li><a href="/fr"><img src="media/flag-ru.svg" alt=""> <span>Français</span></a></li>
+                            <li><a href="/en"><img src="media/flag-en.svg" alt=""> <span>English</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -431,6 +427,107 @@
                         Добавить в корзину  
                         <img src="media/white_plus.svg" alt="">
                     </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="cart-template">
+        <div class="cart-modal">
+            <div class="cart-modal-header">
+                <span class="cart-title">Корзина</span>
+                <span class="products-total-in-cart"><span class="js-num-products-in-cart-modal">1</span> товар</span>
+            </div>
+            <div class="cart-items">
+                <div class="cart-product">
+                    <div class="cart-product-header">
+                        <div class="product-price-cart-modal">
+                            <div class="product-counter js-product-counter">
+                                <span class="product-counter-control product-counter-minus">
+                                    <img src="media/gray-minus.svg" alt="-">
+                                </span>
+                                <span class="num-product js-num-product">1</span>
+                                <span class="product-counter-control product-counter-plus">
+                                    <img src="media/gray-plus.svg" alt="">
+                                </span>
+                            </div>
+                            <div class="product-cart-total">3 100₽</div>
+                        </div>
+
+                        <div class="product-cart-drop">
+                            <button>
+                                <img src="media/drop-product-from-cart.svg" alt="" width="20" height="20">
+                                <span class="product-cart-drop-btn-name">Удалить товар</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart-product-body">
+                        <div class="product-cart-image">
+                            <picture>
+                                <source srcset="media/product-in-cart.png" media="(min-width: 1024px)" width="200"/>
+                                <source srcset="media/product-in-cart.png" media="(min-width: 744px)" width="200" />
+                                <source srcset="media/product-in-cart-mobile.png" media="(max-width: 440px)" width="66" height="66"/>
+                                <img src="media/product-in-cart-mobile.png" alt="" width="66" height="66">
+                            </picture>
+                        </div>
+                        <div class="product-cart-name">Футблока РУБЛИ</div>
+                        <div class="product-cart-sizes">
+                            <div class="product-cart-sizes-title">Размер:</div>
+                            <div class="product-cart-size-container">
+                                <label class="size-item-container" for="size-xs">
+                                    <input type="radio" name="size" id="size-xs" checked>
+                                    <div class="size-item">
+                                        <span class="size-name">XS</span>
+                                        <span class="size-num">12</span>
+                                    </div>
+                                </label>
+                                <label class="size-item-container" for="size-s">
+                                    <input type="radio" name="size" id="size-s">
+                                    <div class="size-item">
+                                        <span class="size-name">S</span>
+                                        <span class="size-num">12</span>
+                                    </div>
+                                </label>
+                                <label class="size-item-container" for="size-m">
+                                    <input type="radio" name="size" id="size-m" disabled>
+                                    <div class="size-item">
+                                        <span class="size-name">M</span>
+                                        <span class="size-num">0</span>
+                                    </div>
+                                </label>
+                                <label class="size-item-container" for="size-l">
+                                    <input type="radio" name="size" id="size-l" value="L">
+                                    <div class="size-item">
+                                        <span class="size-name">L</span>
+                                        <span class="size-num">12</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="product-cart-colors">
+                            <div class="product-cart-colors-title">Цвет:</div>
+                            <div class="product-cart-colors-container">
+                                <label class="color-item-container color-item-active" for="color-white">
+                                    <input type="radio" name="color" id="color-white" value="white" checked>
+                                    <span class="color-item">
+                                        <span style="background: #fff"></span>
+                                    </span>
+                                </label>
+                                <label class="color-item-container" for="color-black">
+                                    <input type="radio" name="color" id="color-black" value="black">
+                                    <span class="color-item">
+                                        <span style="background: #000"></span>
+                                    </span>
+                                </label>
+                                <label class="color-item-container" for="color-green">
+                                    <input type="radio" name="color" id="color-green" value="green" disabled>
+                                    <span class="color-item">
+                                        <span style="background: #78866b"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
